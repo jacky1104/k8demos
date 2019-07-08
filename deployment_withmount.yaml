@@ -1,0 +1,26 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: controller-deployment
+spec:
+  selector:
+    matchLabels:
+      app: controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: controller
+    spec:
+      containers:
+        - name: controller
+          image: 172.16.97.233:80/sandbox/controller:0167
+          volumeMounts:
+            - name: controller
+              mountPath: /etc/fcld
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: controller
+          configMap:
+            name: controller
