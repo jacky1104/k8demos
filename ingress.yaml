@@ -1,0 +1,23 @@
+#helm install --name dev-ingresscontroller stable/nginx-ingress --namespace dev
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: dev-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: controller.sandbox.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: controller
+              servicePort: 80
+    - host: apiservice.sandbox.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: apiservice
+              servicePort: 80
