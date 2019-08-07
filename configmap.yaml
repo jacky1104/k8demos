@@ -1,1 +1,11 @@
 #kubectl create configmap controller --from-file=sbc_controller.conf  -n dev
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-dns
+  namespace: kube-system
+data:
+  stubDomains: |
+    {"acme.local": ["1.2.3.4"]}
+  upstreamNameservers: |
+    ["8.8.8.8", "8.8.4.4"]
