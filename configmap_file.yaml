@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: controller
+  namespace: sandbox
+data:
+  sbc_controller.conf: |
+    ###############################################################
+    ## LoginMgr
+    ###############################################################
+    #loginmgr.contextroot = https://loginalpha.forticloud.com
+    loginmgr.contextroot = https://loginalpha.forticloud.com
+    loginmgr.service.id = forticloudglobal-082RY7nPm9wCWXxtgX2A4uNlD1SfNIzJ.forticloud.com
+    loginmgr.service.secret = N0HDNr5v7dFH27uJgxPoFen6
+    loginmgr.grant.type = client_secret
+    loginmgr.resource.prefix = devicescope
+
+    ###############################################################
+    ## Database
+    ###############################################################
+    sbcontroller.driver=com.mysql.jdbc.Driver
+    sbcontroller.connections=100
+    sbcontroller.con.reuseCount=10000
+    sbcontroller.url=jdbc:mysql://172.16.97.28:3306/scloud?characterEncoding=utf-8
+    sbcontroller.user=forticrm
+    sbcontroller.password=forticrm
+
+    sbcontroller_reader.driver=com.mysql.jdbc.Driver
+    sbcontroller_reader.connections=100
+    sbcontroller_reader.con.reuseCount=10000
+    sbcontroller_reader.url=jdbc:mysql://172.16.97.28:3306/scloud?characterEncoding=utf-8
+    sbcontroller_reader.user=forticrm
+    sbcontroller_reader.password=forticrm
+
+    shareddb.driver=com.mysql.jdbc.Driver
+    shareddb.connections=100
+    shareddb.con.reuseCount=10000
+    shareddb.url=jdbc:mysql://172.16.94.145:3306/shareddb?characterEncoding=utf-8
+    shareddb.user=forticrm
+    shareddb.password=forticrm
+
+    cache.ttl.serverinfo=60
+
+    ## snmp service
+    snmp.host=0.0.0.0
+    snmp.port=1161
+    ##unit second
+    snmp.load.interval=3600
+
+
+    ################################################################
+    ## DES Key
+    #################################################################
+    des.key.sync.apiservice=sandboxuseonly

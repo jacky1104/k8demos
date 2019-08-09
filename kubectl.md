@@ -31,3 +31,10 @@ kubectl top pod POD_NAME --containers               # Show metrics for a given p
 
 
 ```
+
+### Add private docker-registry
+
+```
+kubectl create secret docker-registry regcred --docker-server=http://172.16.97.233 --docker-username=admin --docker-password=Harbor12345 --docker-email=jackyxiang@fortinet.com --namespace=sandboxdev
+
+```
