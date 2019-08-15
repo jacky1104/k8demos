@@ -1,5 +1,49 @@
-### helm command
+### helm command examples
 
+
+
+
+#### Install dashboard
+```
+
+helm install --name my-release stable/kubernetes-dashboard
+
+helm install --name my-release  --namespace kube-system stable/kubernetes-dashboard
+
+helm install --name my-release stable/kubernetes-dashboard --set rbac.clusterAdminRole=true
+
+helm delete my-release // keep the record of the release name
+
+helm ls -a  // you still can see the release name 
+
+helm delete --purge my-release // delete at all, the release name will be available
+
+```
+
+
+
+#### Install nginx-ingress
+```
+
+helm install --name my-release stable/nginx-ingress
+
+helm install --name my-release  --namespace kube-system stable/nginx-ingress
+
+helm install --name my-release stable/nginx-ingress --set controller.kind=DaemonSet
+
+helm delete my-release // keep the record of the release name
+
+helm ls -a  // you still can see the release name 
+
+helm delete --purge my-release // delete at all, the release name will be available
+
+```
+
+
+
+
+
+#### Install prometheus
 ```
 
 helm install --name my-release stable/prometheus-operator
