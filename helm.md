@@ -71,4 +71,18 @@ helm delete --purge my-release // delete at all, the release name will be availa
 helm create mychart
 
 helm install ./mychart
+
+helm install --debug --dry-run ./mychart //only rendering
+
+```
+
+
+
+### Repo
+
+
+```markdown
+helm repo list
+
+helm ls //installed charts
 ```

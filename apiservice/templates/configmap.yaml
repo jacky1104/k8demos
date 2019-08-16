@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: apiservice
+data:
+    sbc_apiservice.conf: |
+        datacenter.driver=com.mysql.jdbc.Driver
+        datacenter.connections=10
+        datacenter.con.reuseCount=10000
+        datacenter.url=jdbc:mysql://172.16.97.29:3306?characterEncoding=utf-8
+        datacenter.user=forticrm
+        datacenter.password=forticrm
+        gwserver.driver=com.mysql.jdbc.Driver
+        gwserver.connections=10
+        gwserver.con.reuseCount=10000
+        gwserver.url=jdbc:mysql://172.16.97.26:3306?characterEncoding=utf-8
+        gwserver.user=forticrm
+        gwserver.password=forticrm
+        ###############################################################
+        ## LoginMgr
+        ###############################################################
+        #loginmgr.contextroot = https://loginalpha.forticloud.com
+        #loginmgr.contextroot = https://172.16.93.127
+        loginmgr.contextroot = https://loginalpha.forticloud.com
+        ## pdf report
+        sandbox.report.user=rpcuser
+        sandbox.report.pwd=rpcuser
+        ## controller host, https only, and the domain is *.forticloud.com
+        controller.host=http://controller.sandboxdev.svc
+        ################################################################
+        ## DES Key
+        #################################################################
+        des.key.sync.controller=sandboxuseonly
+        ################################################################
+        ## APT DATABASE NUMBER CONFIG
+        #################################################################
+        apt.database.number=10
