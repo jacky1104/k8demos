@@ -61,3 +61,14 @@ helm ls -a  // you still can see the release name
 helm delete --purge my-release // delete at all, the release name will be available
 
 ```
+
+
+
+### Helm generate template
+
+```markdown
+
+helm create mychart
+
+helm install ./mychart
+```

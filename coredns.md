@@ -38,6 +38,9 @@ data:
     }
 
 ```
+
+Note: 172.16.94.220 is an dns server
+
 forward: Any queries that are not within the cluster domain of Kubernetes will be forwarded to predefined resolvers (/etc/resolv.conf).
 
 ```
