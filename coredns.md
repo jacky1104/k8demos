@@ -24,6 +24,12 @@ data:
            fallthrough in-addr.arpa ip6.arpa
            ttl 30
         }
+        hosts {
+            172.16.97.173 controller.sandbox.com
+            172.16.97.173 apiservice.sandbox.com
+            
+            fallthrough
+        }
         prometheus :9153
         forward . /etc/resolv.conf
         cache 30
