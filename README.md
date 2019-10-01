@@ -192,3 +192,101 @@ spec:
           name: special-config
   restartPolicy: Never
 ```
+
+
+
+### Secret
+
+> Create secret with --from-file
+
+```markdown
+echo -n 'admin' > ./username.txt
+echo -n '1f2d1e2e67df' > ./password.txt
+
+kubectl create secret generic db-user-pass --from-file=./username.txt --from-file=./password.txt
+
+```
+
+```markdown
+apiVersion: v1
+data:
+  password.txt: MWYyZDFlMmU2N2Rm
+  username.txt: YWRtaW4=
+kind: Secret
+metadata:
+  creationTimestamp: "2019-10-01T18:43:03Z"
+  name: db-user-pass
+  namespace: default
+  resourceVersion: "8974448"
+  selfLink: /api/v1/namespaces/default/secrets/db-user-pass
+  uid: df8956d1-dd8d-4414-8f16-f9402ff7adac
+type: Opaque
+
+```
+
+
+> Create secret with --from-literal
+```markdown
+kubectl create secret generic dev-db-secret --from-literal=username=devuser --from-literal=password='S!B\*d$zDsb'
+```
+
+```markdown
+apiVersion: v1
+data:
+  password: UyFCXCpkJHpEc2I=
+  username: ZGV2dXNlcg==
+kind: Secret
+metadata:
+  creationTimestamp: "2019-10-01T18:45:11Z"
+  name: dev-db-secret
+  namespace: default
+  resourceVersion: "8974680"
+  selfLink: /api/v1/namespaces/default/secrets/dev-db-secret
+  uid: 8cc2b179-bc00-4793-b78e-40ec57850b0d
+type: Opaque
+
+```
+
+
+> Load secret via volume
+```markdown
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: redis
+    volumeMounts:
+    - name: foo
+      mountPath: "/etc/foo"
+      readOnly: true
+  volumes:
+  - name: foo
+    secret:
+      secretName: mysecret
+```
+> Load secret via env values
+```markdown
+apiVersion: v1
+kind: Pod
+metadata:
+  name: secret-env-pod
+spec:
+  containers:
+  - name: mycontainer
+    image: redis
+    env:
+      - name: SECRET_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: mysecret
+            key: username
+      - name: SECRET_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: mysecret
+            key: password
+  restartPolicy: Never
+```
