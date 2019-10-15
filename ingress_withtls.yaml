@@ -45,3 +45,6 @@ spec:
               serviceName: two-container
               servicePort: 80
 
+#test case
+#curl -vL --resolve ping.k8.com:443:172.16.97.173 https://ping.k8.com/ping
+#curl -kvL --resolve ping.k8.com:443:172.16.97.173 https://ping.k8.com/ping
