@@ -1,10 +1,6 @@
 ### helm command examples
 
 
-```
-helm repo add nginx-stable https://helm.nginx.com/stable
-helm repo udpate
-```
 
 
 #### Install dashboard
@@ -35,7 +31,6 @@ helm install --name my-release  --namespace kube-system stable/nginx-ingress
 
 helm install --name my-release stable/nginx-ingress --set controller.kind=DaemonSet
 
-// use this command
 helm install --namespace kube-system  stable/nginx-ingress --set=controller.kind=DaemonSet --set=controller.hostNetwork=true
 
 helm delete my-release // keep the record of the release name
