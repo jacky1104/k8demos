@@ -5,6 +5,8 @@
 
 - type docker-registry
 
+- type tls
+
 
 #### Create generic secret
 
