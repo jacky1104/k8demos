@@ -53,3 +53,101 @@ spec:
         - name: controller
           configMap:
             name: controller
+
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: datacentermgt
+  namespace: sandboxdev
+data:
+  application.properties: |
+    #spring.profiles.active=dev
+    #server.port=8089
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+    spring.datasource.url=jdbc:mysql://172.16.97.28:3306/scloud?serverTimezone=UTC
+    spring.datasource.username=forticrm
+    spring.datasource.password=forticrm
+    spring.jpa.hibernate.ddl-auto=update
+
+    #spring.datasource.hikari.connection-timeout=30
+    spring.datasource.hikari.maximum-pool-size=100
+    spring.datasource.hikari.minimum-idle=10
+
+
+    ##show sql clause
+    #spring.jpa.show-sql=true
+    #spring.jpa.properties.hibernate.format_sql=true
+    logging.level.org.hibernate.SQL=DEBUG
+    logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+    spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+    spring.devtools.restart.additional-paths = src/main/resources/static
+    ##ldap
+    fortinet.ldap.url=ldaps://directory.fortinet.com:636
+
+
+    # timezone range
+    # format -12:12:  means from -12 to 12 tz
+    timezone.range=-12:12
+    timezone.weight=100
+
+
+    ## forticare service url
+    forticare.url=http://172.30.38.100/FAMSService/FAMSService.asmx?wsdl
+    forticare.token=1234567890
+
+    #monitor
+    management.endpoints.web.exposure.include=*
+    #management.endpoint.metrics.enabled=true
+    #management.endpoint.prometheus.enabled=true
+---
+
+apiVersion: apps/v1 # spring boot
+kind: Deployment
+metadata:
+  name: datacentermgt
+  namespace: sandboxdev
+spec:
+  selector:
+    matchLabels:
+      app: datacentermgt
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: datacentermgt
+    spec:
+      containers:
+        - name: datacentermgt
+          image: harbor.forticloud.com/sandbox/datacentermgt:v20.1_0195
+          args: ["--spring.config.location=/etc/fcld/application.properties"]
+          volumeMounts:
+            - name: datacentermgt
+              mountPath: /etc/fcld/application.properties
+              subPath: application.properties
+          ports:
+            - containerPort: 8080
+      volumes:
+        - name: datacentermgt
+          configMap:
+            name: datacentermgt
+            items:
+              - key: application.properties
+                path: application.properties
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datacentermgt
+  namespace: sandboxdev
+spec:
+  selector:
+    app: datacentermgt
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
