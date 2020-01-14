@@ -17,3 +17,11 @@ openssl pkcs12 -export -in two.crt -inkey two.key -out two.p12
 ```markdown
 openssl req -newkey rsa:2048 -nodes -keyout domain.key -x509 -days 365 -out domain.crt
 ```
+
+
+### check expire date of p12
+```markdown
+openssl pkcs12 -in wildcard.forticloud.com.p12  -out certificate.pem -nodes
+cat certificate.pem | openssl x509 -noout -enddate
+
+```
