@@ -58,3 +58,20 @@ kubectl config --kubeconfig=config-demo view --minify
 ```markdown
 kubectl config --kubeconfig=config-demo use-context dev-frontend
 ```
+
+
+```markdown
+
+use --kubeconfig flag, if specified
+use KUBECONFIG environment variable, if specified
+use $HOME/.kube/config file
+
+
+kubectl get pods --kubeconfig=file1
+kubectl get pods --kubeconfig=file2
+
+# or:
+
+KUBECONFIG=file1 kubectl get pods
+KUBECONFIG=file2 kubectl get pods
+```
