@@ -9,6 +9,7 @@ openssl req -new -key devops.key -out devops.csr -subj "/CN=devops"
 openssl x509 -req -in devops.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out devops.crt -days 365
 openssl x509 -in devops.crt -text
 kubectl create rolebinding devops --user=devops --clusterrole=admin -n gitlab-managed-apps
+kubectl create rolebinding jacky --serviceaccount=default:jacky  --clusterrole=admin
 ```
 
 ### original file
@@ -43,6 +44,11 @@ contexts:
 kubectl config --kubeconfig=config-demo set-cluster development --server=https://1.2.3.4 --certificate-authority=fake-ca-file
 kubectl config --kubeconfig=config-demo set-credentials devops --client-certificate=devops.crt --client-key=devops.key
 kubectl config --kubeconfig=config-demo set-context dev-frontend --cluster=development --namespace=frontend --user=devops
+
+
+# set credentials with token 
+# this token can be queries from servic account, secret, then token.
+ kubectl config --kubeconfig=config-demo set-credentials jacky --token=jacky-token
 ```
 
 
