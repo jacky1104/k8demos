@@ -57,6 +57,8 @@ kubectl config --kubeconfig=config-demo view --minify
 
 ```markdown
 kubectl config --kubeconfig=config-demo use-context dev-frontend
+
+kubectl get pods --context=devops@wilson-cluster --kubeconfig=config-demo
 ```
 
 
