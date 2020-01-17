@@ -91,3 +91,9 @@ helm repo list
 
 helm ls //installed charts
 ```
+
+
+
+#### helm 3
+
+

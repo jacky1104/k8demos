@@ -25,3 +25,9 @@ openssl pkcs12 -in wildcard.forticloud.com.p12  -out certificate.pem -nodes
 cat certificate.pem | openssl x509 -noout -enddate
 
 ```
+
+### verify certificate
+```
+ openssl x509 -in file.crt  -text -noout
+
+```

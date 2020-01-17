@@ -1,12 +1,14 @@
 #helm install --name dev-ingresscontroller stable/nginx-ingress --namespace dev
 #特别注意，ingress的命名空间必须与它反向代理的service所处的命名空间一致。
+
+### backend service https needs annotations  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: dashboar-ingress
+  name: dashboard-ingress
   namespace: kube-system
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   tls:
     - hosts:
