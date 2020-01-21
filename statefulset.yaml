@@ -68,16 +68,16 @@ spec:
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
-              value: nfs_storage_provisioner
+              value: nfs-storage-provisioner
             - name: NFS_SERVER
               value: 172.16.97.172
             - name: NFS_PATH
-              value: /data/k8s/storge
+              value: /data/k8s/storage
       volumes:
         - name: nfs-client-root
           nfs:
             server: 172.16.97.172
-            path: /data/k8s/storge
+            path: /data/k8s/storage
   selector:
     matchLabels:
       app: nfs-client-provisioner
@@ -189,4 +189,4 @@ spec:
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: 10Gi
+            storage: 2Gi
