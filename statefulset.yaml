@@ -67,16 +67,16 @@ spec:
             - name: nfs-client-root
               mountPath: /persistentvolumes
           env:
-            - name: PROVISIONER_NAME
-              value: nfs-storage-provisioner
+            - name: PROVISIONER_NAME # will be used in storage class
+              value: nfs-client-provisioner
             - name: NFS_SERVER
-              value: 172.16.97.172
+              value: 172.16.97.173
             - name: NFS_PATH
               value: /data/k8s/storage
       volumes:
         - name: nfs-client-root
           nfs:
-            server: 172.16.97.172
+            server: 172.16.97.173
             path: /data/k8s/storage
   selector:
     matchLabels:
@@ -88,7 +88,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: jacky-nfs-storage
-provisioner: nfs-client-provisioner
+provisioner: nfs-client-provisioner #must match deployment's env PROVISIONER_NAME
 
 
 ---
@@ -190,3 +190,18 @@ spec:
         resources:
           requests:
             storage: 2Gi
+---
+
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: test-pvc
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "jacky-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
