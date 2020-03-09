@@ -42,3 +42,24 @@ openssl x509 -signkey domain.key -in domain.csr -req -days 365 -out domain.crt
 ```markdown
 openssl s_client -connect globalaptctrl.fortinet.com:443
 ```
+
+
+### Check a pkcs#12 files
+```markdown
+openssl pkcs12 -info -in keyStore.p12
+```
+
+### check csr
+```markdown
+openssl req -text -noout -verify -in domain.csr
+```
+
+### check private key
+```markdown
+openssl rsa -in private.key -check
+```
+
+### check certificate
+```markdown
+openssl x509 -in certificate.crt -text -noout
+```
