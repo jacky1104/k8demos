@@ -31,3 +31,14 @@ cat certificate.pem | openssl x509 -noout -enddate
  openssl x509 -in file.crt  -text -noout
 
 ```
+
+
+### Generate a Self-Signed Certificate from an Existing Private Key and CSR
+```markdown
+openssl x509 -signkey domain.key -in domain.csr -req -days 365 -out domain.crt
+```
+
+### get the certificate from url
+```markdown
+openssl s_client -connect globalaptctrl.fortinet.com:443
+```
