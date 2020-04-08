@@ -38,3 +38,32 @@ kubectl top pod POD_NAME --containers               # Show metrics for a given p
 kubectl create secret docker-registry regcred --docker-server=http://172.16.97.233 --docker-username=admin --docker-password=Harbor12345 --docker-email=jackyxiang@fortinet.com --namespace=sandboxdev
 
 ```
+
+
+
+### drain node
+
+```markdown
+
+kubectl drain dnode1.forticloud.com
+kubectl drain dnode1.forticloud.com --ignore-daemonsets --delete-local-data
+
+```
+
+### Get ca and token from secret
+
+```markdown
+
+kubectl -n kube-system get secret sa-token -o jsonpath='{.data.token}' | base64 --decode
+kubectl -n kube-system get secrets tiller-token-gf965 -o jsonpath='{.data.ca\.crt}' | base64 -d
+
+```
+
+
+### Create cluster role binding
+
+```markdown
+
+kubectl create clusterrolebinding tiller --serviceaccount=kube-system:tiller --clusterrole=cluster-admin
+
+```
