@@ -94,3 +94,18 @@ kubectl get pods --kubeconfig=file2
 KUBECONFIG=file1 kubectl get pods
 KUBECONFIG=file2 kubectl get pods
 ```
+
+
+
+### switch context
+
+```markdown
+kubectl config -h
+// use some context
+kubectl config current-context
+kubectl config get-contexts
+kubectl config kubectl config use-context jacky_admin_context
+
+//delete context
+kubectl config delete-context jacky_admin_context
+```
