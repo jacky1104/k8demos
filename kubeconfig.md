@@ -3,12 +3,20 @@
 
 ### Generate client certificate
 
+There are two kinds of user
+- In cluster, service account
+- Out cluster, normal user
+
+When create client certificate with k8 cluster root ca, the CN is the user name.
+
 ```
 openssl genrsa -out devops.key 2048
-openssl req -new -key devops.key -out devops.csr -subj "/CN=devops"
+openssl req -new -key devops.key -out devops.csr -subj "/CN=devops"  //devops is the user name
 openssl x509 -req -in devops.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out devops.crt -days 365
 openssl x509 -in devops.crt -text
-kubectl create rolebinding devops --user=devops --clusterrole=admin -n gitlab-managed-apps
+// if create rolebinding, use clusterrole=admin
+// if create clusterrolebind, use clusterrole=cluster-admin 
+kubectl create rolebinding devops --user=devops --clusterrole=admin -n gitlab-managed-apps // grant rights to the user
 
 ### this is for service account, and authentication with token
 kubectl create rolebinding jacky --serviceaccount=default:jacky  --clusterrole=admin
@@ -42,6 +50,7 @@ contexts:
 
 ```
 
+### get fake-ca-file from /etc/kubernetes/pki/ca.crt
 ```
 kubectl config --kubeconfig=config-demo set-cluster development --server=https://1.2.3.4 --certificate-authority=fake-ca-file
 kubectl config --kubeconfig=config-demo set-credentials devops --client-certificate=devops.crt --client-key=devops.key
