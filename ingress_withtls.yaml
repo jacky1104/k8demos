@@ -2,6 +2,7 @@
 #特别注意，ingress的命名空间必须与它反向代理的service所处的命名空间一致。
 
 ### backend service https needs annotations  nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+### create secret cmd: kubectl create secret tls forticloud-two-container-secret --key star_forticloud_com-privkey.key  --cert star_forticloud_com-chained.crt  -n sandboxdev
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
@@ -12,10 +13,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - dashboard.k8.com
-      secretName: dashboard-secret
+        - k8dashboard.forticloud.com
+      secretName: forticloud-dashboard-secret
   rules:
-    - host: dashboard.k8.com
+    - host: k8dashboard.forticloud.com
       http:
         paths:
           - path: /

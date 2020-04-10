@@ -22,6 +22,9 @@ helm ls -a  // you still can see the release name
 
 helm delete --purge my-release // delete at all, the release name will be available
 
+
+helm install --name dashboard --namespace kube-system  stable/kubernetes-dashboard --set rbac.clusterAdminRole=true
+
 ```
 
 
