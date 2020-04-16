@@ -99,3 +99,40 @@ SELECT current_database();
 delete from ci_runners where id in (****);
 
 ```
+
+
+### gitlab runner config, /home/gitlab-runner/.gitlab-runner/config.toml
+
+```markdown
+listen_address = "[::]:9252"
+concurrent = 4
+check_interval = 3
+log_level = "info"
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "runner-gitlab-runner-5669c89f4-lxdcv"
+  url = "http://git.forticloud.com/"
+  token = "YnuuVFTYJzcTJQ7FBKcG"
+  executor = "kubernetes"
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+  [runners.kubernetes]
+    host = ""
+    bearer_token_overwrite_allowed = false
+    image = "ubuntu:16.04"
+    namespace = "gitlab-managed-apps"
+    namespace_overwrite_allowed = ""
+    privileged = true
+    service_account_overwrite_allowed = ""
+    pod_annotations_overwrite_allowed = ""
+    [[runners.kubernetes.volumes.host_path]]
+      name = "gitlab-runner-host"
+      mount_path = "/home/runner/"
+      host_path = "/data/gitlab_runner"
+    [runners.kubernetes.node_selector]
+      vpnNode = "true"
+```
