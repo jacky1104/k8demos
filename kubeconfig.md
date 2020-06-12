@@ -4,8 +4,8 @@
 ### Generate client certificate
 
 There are two kinds of user
-- In cluster, service account
-- Out cluster, normal user
+- In a cluster, using service account
+- Out a cluster, using normal user
 
 When create client certificate with k8 cluster root ca, the CN is the user name.
 

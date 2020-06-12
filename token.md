@@ -4,7 +4,7 @@
 
 ![](.token_images/gitlab_kubernetes_cluster.png)
 
-There are there params necessary,
+There are three params necessary,
 
 - Api Url
 - CA Certificate
