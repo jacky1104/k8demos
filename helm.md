@@ -99,4 +99,9 @@ helm ls //installed charts
 
 #### helm 3
 
+#### Install prometheus
+```markdown
+
+helm install <release-name> --namespace monitoring stable/prometheus-operator
+```
 
