@@ -64,3 +64,11 @@ openssl rsa -in private.key -check
 ```markdown
 openssl x509 -in certificate.crt -text -noout
 ```
+
+
+### validate the cert from some host
+```markdown
+openssl s_client -showcerts -connect host:443 | openssl x509 -outform PEM >mycertfile.pem
+openssl x509 -enddate -noout -in mycertfile.pem
+
+```
