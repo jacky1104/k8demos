@@ -99,9 +99,23 @@ helm ls //installed charts
 
 #### helm 3
 
+#### list
+
+```markdown
+helm ls --all-namespaces --all
+```
+
 #### Install prometheus
 ```markdown
 
 helm install <release-name> --namespace monitoring stable/prometheus-operator
+```
+
+#### Install metrics-server
+```markdown
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+helm install metrics-server --namespace monitoring bitnami/metrics-server
 ```
 
