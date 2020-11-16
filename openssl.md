@@ -1,5 +1,8 @@
 ### P12 to key and crt 
 ```$markdown
+// this will not promote `Enter PEM pass phrase`
+openssl pkcs12 -nodes -nocerts -in server.p12 -out server.pem
+// this will promote `Enter PEM pass phrase`
 openssl pkcs12 -in filename.pfx -nocerts -out filename.key
 openssl pkcs12 -in filename.pfx -clcerts -nokeys -out filename.crt
 openssl pkcs12 -in filename.pfx -clcerts -nokeys -nodes -out filename.crt
