@@ -301,3 +301,19 @@ xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.o
         </repository>
 </distributionManagement>
 ```
+
+### version plugin
+
+```markdown
+ <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>versions-maven-plugin</artifactId>
+      <version>2.3</version>
+      <configuration>
+          <generateBackupPoms>false</generateBackupPoms>
+      </configuration>
+  </plugin>
+
+
+mvn versions:set -DnewVersion=1.1.0-SNAPSHOT
+```
