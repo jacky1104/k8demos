@@ -86,8 +86,7 @@ openssl s_client -showcerts -connect host:443 | openssl x509 -outform PEM >mycer
 ```markdown
 cd $JAVA_HOME/bin/
 
-keytool -importcert -alias {cert_alias} -file {cert location} -trustcacerts -keystore
-$JAVA_HOME/jre/lib/security/cacerts -storetype JKS
+keytool -importcert -alias {cert_alias} -file {cert location} -trustcacerts -keystore $JAVA_HOME/jre/lib/security/cacerts -storetype JKS
 ```
 
 ### download the cert via openssl

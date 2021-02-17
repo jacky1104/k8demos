@@ -25,7 +25,11 @@ log_level = "info"
     pod_annotations_overwrite_allowed = ""
     [[runners.kubernetes.volumes.host_path]]
       name = "gitlab-runner-host"
-      mount_path = "/home/runner/"
-      host_path = "/data/gitlab_runner"
+      mount_path = "/home/runner/SourceCode/"
+      host_path = "/data/gitlab_runner/SourceCode"
+    [[runners.kubernetes.volumes.host_path]]
+      name = "gitlab-runner-host2"
+      mount_path = "/root/.m2"
+      host_path = "/data/m2"
     [runners.kubernetes.node_selector]
       vpnNode = "true"
