@@ -119,3 +119,20 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm install metrics-server --namespace monitoring bitnami/metrics-server
 ```
 
+
+
+### dashboard
+
+```markdown
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard -n kube-system  --set=rbac.clusterAdminRole=true
+```
+
+### nginx-ingress
+
+```markdown
+helm repo add nginx-stable https://helm.nginx.com/stable
+helm install nginx-ingress nginx-stable/nginx-ingress -n kube-system --set=controller.kind=DaemonSet --set=controller.hostNetwork=true
+helm install nginx-ingress nginx-stable/nginx-ingress -n kube-system --set=controller.kind=DaemonSet --set=controller.hostNetwork=true --set=controller.enableTLSPassthrough=true
+helm install ingress-nginx ingress-nginx/ingress-nginx -n kube-system --set=controller.kind=DaemonSet --set=controller.hostNetwork=true --set=controller.enableTLSPassthrough=true
+```

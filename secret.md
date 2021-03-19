@@ -26,7 +26,7 @@ kubectl create secret docker-registry regcred --docker-server=<your-registry-ser
 #### create tls secret
 
 ```markdown
-
-kubectl create secret tls forticloud-two-container-secret --key star_forticloud_com-privkey.key  --cert star_forticloud_com-chained.crt  -n sandboxdev
+openssl req -newkey rsa:2048 -nodes -keyout domain.key -x509 -days 365 -out domain.crt
+kubectl create secret tls ingress-secret --key domain.key  --cert domain.crt  -n kube-system
 
 ```
