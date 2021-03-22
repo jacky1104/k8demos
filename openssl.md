@@ -102,3 +102,24 @@ openssl x509 -inform DER -in certificate.cer -out certificate.crt
 
 openssl x509 -inform PEM -in certificate.cer -out certificate.crt
 ```
+
+
+### generate p12 with keytool
+```markdown
+keytool -genkeypair -keyalg RSA -keysize 2048 -storetype PKCS12 -keystore jacky.p12 -validity 365
+```
+```markdown
+1.Generate 2048-bit RSA private key:
+
+openssl genrsa -out key.pem 2048
+2. Generate a Certificate Signing Request:
+
+3. openssl req -new -sha256 -key key.pem -out csr.csr
+Generate a self-signed x509 certificate suitable for use on web servers.
+
+openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pem
+4. Create SSL identity file in PKCS12 as mentioned here
+
+openssl pkcs12 -export -out client-identity.p12 -inkey key.pem -in certificate.pem
+
+```
