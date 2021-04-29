@@ -16,3 +16,9 @@ xxxxxCA证书内容xxxxx
 kubectl get secret jacky-token-f9zp7  -n jacky -o json | jq -r '.data.token' | base64 -d
 xxxxxxtoken值xxxx
 ```
+
+
+### Where to download jq tool
+```markdown
+wget https://stedolan.github.io/jq/download/ -o jq
+```
