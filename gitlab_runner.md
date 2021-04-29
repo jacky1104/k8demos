@@ -21,7 +21,8 @@ helm pull gitlab/gitlab-runner --version 0.21.1
 2. runnerRegistrationToken: "4f7E-b8ZW8P_xsSj2izq"
 3. serviceAccountName: forticloud-gitlab
 4. concurrent: 50
+5. tags: "sandbox_group, forticloud_group"
 
-5. install the runner
+6. install the runner
 helm install  forticloud-gitlab-runner   gitlab/gitlab-runner -n gitlab -f values.yaml --version 0.21.1
 ```
