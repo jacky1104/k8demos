@@ -53,7 +53,9 @@ spec:
               serviceName: two-container
               servicePort: 80
 
-### how to create secret, please refer to secret.md
+### How to create secret
+# openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 365 -out server.crt
+# kubectl create secret tls dashboard-ingress-secret --key server.key  --cert server.crt  -n kube-system
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -67,9 +69,9 @@ spec:
   tls:
     - hosts:
         - k8dashboard.forticloud.com
-      secretName: ingress-tls-secret
+      secretName: dashboard-ingress-secret
   rules:
-    - host: k8dash.forticloud.com
+    - host: k8dashboard.forticloud.com
       http:
         paths:
           - path: /
