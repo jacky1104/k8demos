@@ -103,6 +103,7 @@ helm ls //installed charts
 
 ```markdown
 helm ls --all-namespaces --all
+helm uninstall <release-name> -n <namespace>
 ```
 
 #### Install prometheus
