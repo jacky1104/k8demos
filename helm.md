@@ -131,8 +131,24 @@ helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard -n k
 ### nginx-ingress
 
 ```markdown
+// out of date
 helm repo add nginx-stable https://helm.nginx.com/stable
 helm install nginx-ingress nginx-stable/nginx-ingress -n kube-system --set=controller.kind=DaemonSet --set=controller.hostNetwork=true
 helm install nginx-ingress nginx-stable/nginx-ingress -n kube-system --set=controller.kind=DaemonSet --set=controller.hostNetwork=true --set=controller.enableTLSPassthrough=true
+
+// works
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
 helm install ingress-nginx ingress-nginx/ingress-nginx -n kube-system --set=controller.kind=DaemonSet --set=controller.hostNetwork=true --set=controller.enableTLSPassthrough=true
+```
+
+
+
+### gitlab runner
+
+```markdown
+helm repo add gitlab https://charts.gitlab.io
+
+helm install --namespace gitlab  gitlab-runner -f values.yaml  gitlab/gitlab-runner --version 0.21.1
+
 ```

@@ -28,3 +28,14 @@ kubectl label nodes <your-node-name> disktype=ssd
 ```
 kubectl label nodes <your-node-name> disktype-
 ```
+
+
+```markdown
+To prevent a node from scheduling new pods use:
+
+kubectl cordon <node-name>
+
+To tell is to resume scheduling use:
+
+kubectl uncordon <node-name>
+```

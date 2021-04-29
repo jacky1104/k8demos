@@ -27,6 +27,7 @@ server {
        ssl_password_file /home/gui/password.txt;
        location / {
            proxy_pass http://172.16.97.25:8082;
+           proxy_connect_timeout      60;
        }
 }
 ```

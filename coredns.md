@@ -53,3 +53,12 @@ forward: Any queries that are not within the cluster domain of Kubernetes will b
 forward .  172.16.0.1
 
 ```
+
+
+### how to debug dns?
+
+```markdown
+kubectl apply -f https://k8s.io/examples/admin/dns/dnsutils.yaml
+kubectl exec -i -t dnsutils -- nslookup kubernetes.default
+kubectl exec -ti dnsutils -- cat /etc/resolv.conf
+```
