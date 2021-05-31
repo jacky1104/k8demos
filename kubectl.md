@@ -1,14 +1,11 @@
 ### kubectl command
 
-
 cheat sheet: https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 
 ```
 kubectl get secret <secret name> -o jsonpath="{['data']['ca\.crt']}" | base64 --decode
 
 ```
-
-
 
 - Log
 
@@ -39,14 +36,11 @@ kubectl create secret docker-registry regcred --docker-server=http://172.16.97.2
 
 ```
 
-
-
 ### drain node
 
 ```markdown
 
-kubectl drain dnode1.forticloud.com
-kubectl drain dnode1.forticloud.com --ignore-daemonsets --delete-local-data
+kubectl drain dnode1.forticloud.com kubectl drain dnode1.forticloud.com --ignore-daemonsets --delete-local-data
 
 ```
 
@@ -54,11 +48,10 @@ kubectl drain dnode1.forticloud.com --ignore-daemonsets --delete-local-data
 
 ```markdown
 
-kubectl -n kube-system get secret sa-token -o jsonpath='{.data.token}' | base64 --decode
-kubectl -n kube-system get secrets tiller-token-gf965 -o jsonpath='{.data.ca\.crt}' | base64 -d
+kubectl -n kube-system get secret sa-token -o jsonpath='{.data.token}' | base64 --decode kubectl -n kube-system get
+secrets tiller-token-gf965 -o jsonpath='{.data.ca\.crt}' | base64 -d
 
 ```
-
 
 ### Create cluster role binding
 
@@ -66,4 +59,10 @@ kubectl -n kube-system get secrets tiller-token-gf965 -o jsonpath='{.data.ca\.cr
 
 kubectl create clusterrolebinding tiller --serviceaccount=kube-system:tiller --clusterrole=cluster-admin
 
+```
+
+### Kubelet log
+
+```markdown
+journalctl -u kubelet
 ```

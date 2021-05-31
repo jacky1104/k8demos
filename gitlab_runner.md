@@ -1,3 +1,4 @@
+
 ### How to install runner in kubernetes cluster?
 
 1 prepare the service account and namespace
@@ -24,5 +25,6 @@ helm pull gitlab/gitlab-runner --version 0.21.1
 5. tags: "sandbox_group, forticloud_group"
 6. privileged: true
 7. install the runner
+8. runUntagged: true
 helm install  forticloud-gitlab-runner   gitlab/gitlab-runner -n gitlab -f values.yaml --version 0.21.1
 ```
