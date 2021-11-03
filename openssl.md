@@ -3,6 +3,8 @@
 ```$markdown
 // this will not promote `Enter PEM pass phrase`
 openssl pkcs12 -nodes -nocerts -in server.p12 -out server.pem
+openssl pkcs12 -nodes -in filename.pfx -clcerts -nokeys -out filename.crt
+
 // this will promote `Enter PEM pass phrase`
 openssl pkcs12 -in filename.pfx -nocerts -out filename.key
 openssl pkcs12 -in filename.pfx -clcerts -nokeys -out filename.crt
@@ -122,4 +124,12 @@ openssl req -x509 -sha256 -days 365 -key key.pem -in csr.csr -out certificate.pe
 
 openssl pkcs12 -export -out client-identity.p12 -inkey key.pem -in certificate.pem
 
+```
+
+
+### How to verify crt and key
+
+```markdown
+openssl x509 -noout -modulus -in server.crt| openssl md5
+openssl rsa -noout -modulus -in server.key| openssl md5
 ```

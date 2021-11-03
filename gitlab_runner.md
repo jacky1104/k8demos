@@ -27,4 +27,5 @@ helm pull gitlab/gitlab-runner --version 0.21.1
 7. install the runner
 8. runUntagged: true
 helm install  forticloud-gitlab-runner   gitlab/gitlab-runner -n gitlab -f values.yaml --version 0.21.1
+helm upgrade --install  sandboxcloud-group-runner-1   gitlab/gitlab-runner  -n gitlab -f sandbox_group_gitlab_runner.yaml --version 0.21.1
 ```
