@@ -129,10 +129,17 @@ log_level = "info"
     privileged = true
     service_account_overwrite_allowed = ""
     pod_annotations_overwrite_allowed = ""
+    cpu_limit = "1"
+    memory_limit = "2Gi"
+    [[runners.kubernetes.volumes.host_path]]
+      name = "maven"             
+      mount_path = "/root/.m2"    
+      host_path = "/data/.m2"
     [[runners.kubernetes.volumes.host_path]]
       name = "gitlab-runner-host"
       mount_path = "/home/runner/"
       host_path = "/data/gitlab_runner"
     [runners.kubernetes.node_selector]
       vpnNode = "true"
+
 ```
