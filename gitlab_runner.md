@@ -26,6 +26,20 @@ helm pull gitlab/gitlab-runner --version 0.21.1
 6. privileged: true
 7. install the runner
 8. runUntagged: true
+9. config the pod resources via builds block
 helm install  forticloud-gitlab-runner   gitlab/gitlab-runner -n gitlab -f values.yaml --version 0.21.1
 helm upgrade --install  sandboxcloud-group-runner-1   gitlab/gitlab-runner  -n gitlab -f sandbox_group_gitlab_runner.yaml --version 0.21.1
+```
+
+### 9
+```markdown
+ builds:
+     cpuLimit: 1000m
+    # cpuLimitOverwriteMaxAllowed: 400m
+     memoryLimit: 8Gi
+    # memoryLimitOverwriteMaxAllowed: 512Mi
+     cpuRequests: 1000m
+    # cpuRequestsOverwriteMaxAllowed: 200m
+     memoryRequests: 8Gi
+    # memoryRequestsOverwriteMaxAllowed: 256Mi
 ```
